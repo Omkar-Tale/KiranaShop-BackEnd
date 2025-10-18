@@ -104,11 +104,13 @@ export const login = async (req, res)=>{
     }
 }
 
+
+
 //  checking the user is authencated or not?
 // api path : /api/user/is-auth
 export const isAuth = async (req, res)=>{
     try {
-        const userId = req.user.id;
+        const userId = req.user.id
         const user = await userModel.findById(userId).select("-password");
         res.json({
             success: true,

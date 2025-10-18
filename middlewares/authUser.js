@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken'
 
-// it verify the tokens
+// it verify the user is authenticated or not?
 export const authUser = async (req, res, next)=>{
     const {token} = req.cookies;
     // its for checking the availability of token
@@ -15,7 +15,7 @@ export const authUser = async (req, res, next)=>{
         const tokenDecoded = jwt.verify(token, process.env.SECRET_KEY);
 
         if(tokenDecoded){
-            req.user = {id: tokenDecoded.Id};
+            req.user = {id: tokenDecoded.Id}
         }else{
             res.json({
             success: false,

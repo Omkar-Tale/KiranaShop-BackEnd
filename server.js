@@ -4,6 +4,7 @@ import cors from "cors"
 import "dotenv/config"
 import { connectDB } from "./config/db.js";
 import userRouter from "./routes/userRoute.js";
+import sellerRouter from "./routes/sellerRoute.js";
 
 const app = express();
 
@@ -17,7 +18,7 @@ const allowedOrigin = ["http://localhost:5173"]
 // middleware configuration
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors({origin: allowedOrigin, credentails: true}))
+app.use(cors({origin: allowedOrigin, credentials: true}))
 
 
 app.get("/", (req, res)=>{
@@ -26,6 +27,10 @@ app.get("/", (req, res)=>{
 
 // user Routes
 app.use("/api/user", userRouter)
+
+// seller Route
+app.use("/api/seller", sellerRouter)
+
 
 app.listen(PORT, ()=> {
     console.log(`http://localhost:${PORT}`)
