@@ -19,6 +19,7 @@ export const addProduct = async (req, res)=>{
         await productModel.create({...productData, image: imagesUrl})
 
         res.json({
+            success: true,
             message: "product added"
         })
     } catch (error) {
@@ -31,6 +32,7 @@ export const productList = async (req, res)=>{
     try {
         const products = await productModel.find({});
         res.json({
+            success: true,
             products
         })
     } catch (error) {
@@ -57,6 +59,7 @@ export const changeStock = async (req, res)=>{
         const {id, inStock} = req.body
         await productModel.findByIdAndUpdate(id, {inStock});
         res.json({
+            success: true,
             message: "stock updated!"
         })
     } catch (error) {

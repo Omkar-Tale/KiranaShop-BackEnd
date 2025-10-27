@@ -8,6 +8,7 @@ import sellerRouter from "./routes/sellerRoute.js";
 import productRouter from "./routes/productRoute.js";
 import cartRouter from "./routes/cartRoute.js";
 import addressRouter from "./routes/addressRoute.js";
+import orderRouter from "./routes/orderRoute.js";
 
 const app = express();
 
@@ -42,6 +43,9 @@ app.use("api/cart", cartRouter)
 
 // address Routes
 app.use("api/address", addressRouter)
+
+// order routes
+app.use("/api/order", orderRouter)
 
 app.listen(PORT, ()=> {
     console.log(`http://localhost:${PORT}`)

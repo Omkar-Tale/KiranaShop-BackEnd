@@ -8,8 +8,9 @@ export const addAddress = async(req, res)=>{
         await addressModel.create({...address, userId})
 
         res.json({
+            success: true,
             message: "Address Added"
-        })
+        }) 
 
     } catch (error) {
         console.log(error.message)
@@ -27,6 +28,7 @@ export const getAddress = async(req, res)=>{
         const addresses = await addressModel.find({userId})
 
         res.json({
+            success: true,
             addresses
         })
 

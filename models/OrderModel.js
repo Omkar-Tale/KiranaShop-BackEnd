@@ -4,13 +4,13 @@ const orderSchema = new mongoose.Schema({
     userId: {
         type: String,
         required: true,
-        ref: "user"
+        ref: 'user'
     },
     items: [{
         product: {
             type: String,
             required: true,
-            ref: 'user'
+            ref: 'product'
         },
         quantity: {
             type: Number,
@@ -22,12 +22,12 @@ const orderSchema = new mongoose.Schema({
         required: true
     },
     address: {
-        type: Number,
+        type: String,
         required: true,
         ref: 'address'
     },
     status: {
-        type: Number,
+        type: String,
         default: "Order Placed"
     },
     paymentType: {

@@ -6,6 +6,7 @@ export const updateCart = async (req, res)=>{
         const {userId, cartItem} = req.body
         await userModel.findByIdAndUpdate(userId, {cartItem})
         res.json({
+            success: true,
             message: "Cart Updated"
         })
 
