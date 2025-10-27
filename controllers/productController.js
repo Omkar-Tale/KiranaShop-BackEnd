@@ -1,5 +1,6 @@
 import {v2 as cloudinary} from "cloudinary"
 import { productModel } from "../models/ProductModel.js";
+<<<<<<< HEAD
 
 
 // add products by seller : path = api/product/addProduct
@@ -47,6 +48,42 @@ export const productList = async (req, res) => {
         res.json({
             message: error.message
         })
+=======
+
+// add products by seller : path = api/product/addProduct
+export const addProduct = async (req, res)=>{
+    try {
+        let productData = JSON.parse(req.body.productData);
+
+        const images = req.files
+
+        let imagesUrl = await Promise.all(
+            images.map(async(item)=>{
+                let result = await cloudinary.uploader.upload(item.path, {resource_type: "image"});
+                return result.secure_url
+            })
+        )
+
+        await productModel.create({...productData, image: imagesUrl})
+
+        res.json({
+            message: "product added"
+        })
+    } catch (error) {
+        console.log(error.message)
+    }
+}
+
+// get product list : path = api/product/list
+export const productList = async (req, res)=>{
+    try {
+        const products = await productModel.find({});
+        res.json({
+            products
+        })
+    } catch (error) {
+        console.log(error.message)
+>>>>>>> bae04014d289be2616c472ed0c5aeb4e86e43fdc
     }
 }
 
@@ -55,16 +92,26 @@ export const productById = async (req, res)=>{
     try {
         const {id} = req.body
 
+<<<<<<< HEAD
         const product = await productModel.findById(id);
 
+=======
+    try {
+        const {id} = req.body
+        const product = await productModel.findById(id);
+>>>>>>> bae04014d289be2616c472ed0c5aeb4e86e43fdc
         res.json({
             product
         })
     } catch (error) {
+<<<<<<< HEAD
         console.log(error.message);
         res.json({
             message: error.message
         })
+=======
+        console.log(error.message)
+>>>>>>> bae04014d289be2616c472ed0c5aeb4e86e43fdc
     }
 }
 
@@ -72,6 +119,7 @@ export const productById = async (req, res)=>{
 export const changeStock = async (req, res)=>{
     try {
         const {id, inStock} = req.body
+<<<<<<< HEAD
 
         await productModel.findByIdAndUpdate(id, {inStock})
 
@@ -85,3 +133,13 @@ export const changeStock = async (req, res)=>{
         })
     }
 }
+=======
+        await productModel.findByIdAndUpdate(id, {inStock});
+        res.json({
+            message: "stock updated!"
+        })
+    } catch (error) {
+        console.log(error.message)
+    }
+}                     
+>>>>>>> bae04014d289be2616c472ed0c5aeb4e86e43fdc
