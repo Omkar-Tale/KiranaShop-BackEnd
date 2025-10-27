@@ -5,6 +5,7 @@ import "dotenv/config"
 import { connectDB } from "./config/db.js";
 import userRouter from "./routes/userRoute.js";
 import sellerRouter from "./routes/sellerRoute.js";
+import productRouter from "./routes/productRoute.js";
 
 const app = express();
 
@@ -28,9 +29,11 @@ app.get("/", (req, res)=>{
 // user Routes
 app.use("/api/user", userRouter)
 
-// seller Route
+// seller Routes
 app.use("/api/seller", sellerRouter)
 
+// product Routes
+app.use("api/product", productRouter)
 
 app.listen(PORT, ()=> {
     console.log(`http://localhost:${PORT}`)
