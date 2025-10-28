@@ -92,7 +92,8 @@ export const login = async (req, res)=>{
 
         res.json({
             success: true,
-            user: { email: user.email, password: user.password }
+            user: { email: user.email, password: user.password },
+            message: "You Logged In!"
         })
 
     } catch (error) {
@@ -137,7 +138,7 @@ export const logout = async (req, res)=>{
         })
         res.json({
             success: true,
-            user: "user logged out successfully!"
+            message: "You Logged Out Successfully!"
         })
     } catch (error) {
         console.log(error.message)

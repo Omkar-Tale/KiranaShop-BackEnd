@@ -11,8 +11,8 @@ export const addProduct = async (req, res)=>{
 
         let imagesUrl = await Promise.all(
             images.map(async(item)=>{
-                let result = await cloudinary.uploader.upload(item.path, {resource_type: "image"});
-                return result.secure_url
+                let product = await cloudinary.uploader.upload(item.path, {resource_type: "image"});
+                return product.secure_url
             })
         )
 
