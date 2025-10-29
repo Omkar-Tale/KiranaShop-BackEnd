@@ -43,7 +43,8 @@ export const register = async (req, res) => {
 
         res.json({
             success: true,
-            user: { name: user.name, email: user.email }
+            user: user,
+            message: "You Logged in successfully!"
         })
 
     } catch (error) {
@@ -92,7 +93,7 @@ export const login = async (req, res)=>{
 
         res.json({
             success: true,
-            user: { email: user.email, password: user.password },
+            user: user,
             message: "You Logged In!"
         })
 
